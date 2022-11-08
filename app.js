@@ -81,12 +81,12 @@ module.exports = app.get("/movies/:movieId", async (request, response) => {
       movie
     ORDER BY
       movie_id =${movieId};`;
-  const movie = await db.all(getMoviesQuery);
+  const movie = await db.get(getMoviesQuery);
 
   response.send(convertDbObjToResponseObj(movie));
 });
 //API 4
-module.exports = app.get("/movies/:movieID", async (request, response) => {
+module.exports = app.put("/movies/:movieID", async (request, response) => {
   const { movieID } = request.params;
   const movieDetails = request.body;
   const { directorId, movieName, leadActor } = movieDetails;
